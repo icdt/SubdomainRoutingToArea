@@ -26,15 +26,21 @@ namespace SubdomainRouteToArea
             }
 
             var subdomain = host.Substring(0, index);
-            string[] blacklist = { "www", "mydomain", "mail" };
+            string[] blacklist = { "www", "test", "mail" }; // 這裡可以設定不用subdomain routing的部分
 
             if (blacklist.Contains(subdomain))
             {
                 return null;
             }
 
-            string controller = (segments.Length > 1) ? segments[0] : "M";
-            string action = (segments.Length > 2) ? segments[1] : "Index";
+            // url 規則
+            // aaa.test.com/M/Index
+            // aaa : subdomain
+            // M: controller
+            // Index: action
+
+            string controller = (segments.Length > 1) ? segments[0] : "M";   // 預設controller為M
+            string action = (segments.Length > 2) ? segments[1] : "Index";   // 預設action為Index
 
             var routeData = new RouteData(this, new MvcRouteHandler());
             routeData.DataTokens.Add("area", "Wed"); // 綁定 Area
