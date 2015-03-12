@@ -14,5 +14,11 @@ namespace SubdomainRouteToArea.Areas.Wed.Controllers
             ViewBag.SubDomain = subdomain;
             return View();
         }
+
+        public ActionResult About(string subdomain) 
+        {
+            ViewBag.SubDomain = subdomain;
+            return View();
+        }
     }
 }

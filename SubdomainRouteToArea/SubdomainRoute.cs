@@ -18,6 +18,7 @@ namespace SubdomainRouteToArea
 
             var host = httpContext.Request.Url.Host;
             var index = host.IndexOf(".");
+
             string[] segments = httpContext.Request.Url.PathAndQuery.TrimStart('/').Split('/');
 
             if (index < 0)
@@ -39,8 +40,8 @@ namespace SubdomainRouteToArea
             // M: controller
             // Index: action
 
-            string controller = (segments.Length > 1) ? segments[0] : "M";   // 預設controller為M
-            string action = (segments.Length > 2) ? segments[1] : "Index";   // 預設action為Index
+            string controller = (segments.Length > 0 && !"".Equals(segments[0])) ? segments[0] : "M";   // 預設controller為M
+            string action = (segments.Length > 1 && !"".Equals(segments[1])) ? segments[1] : "Index";   // 預設action為Index
 
             var routeData = new RouteData(this, new MvcRouteHandler());
             routeData.DataTokens.Add("area", "Wed"); // 綁定 Area
