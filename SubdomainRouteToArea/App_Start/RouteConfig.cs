@@ -13,6 +13,9 @@ namespace SubdomainRouteToArea
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            // This will add the parameter "subdomain" to the route parameters
+            routes.Add(new SubdomainRoute());
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
